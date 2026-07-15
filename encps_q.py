@@ -174,53 +174,128 @@
 # post1.like("shmuel")
 # post1.status()
 
-# question 9
-class UserProfile:
-    def __init__(self, username):
-        self.username = username
-        self.__is_public = True
-        self.__show_email = False
-        self.__show_age = False
+# # question 9
+# class UserProfile:
+#     def __init__(self, username):
+#         self.username = username
+#         self.__is_public = True
+#         self.__show_email = False
+#         self.__show_age = False
+
+#     @property
+#     def is_public (self):
+#         return self.__is_public
+    
+#     @is_public.setter
+#     def is_public(self,value):
+#         if type(value) == bool:
+#             self.__is_public = value
+#         else:
+#             print (f"(value) must be True or False")
+
+#     @property
+#     def show_email (self):
+#         return self.__show_email
+    
+#     @show_email.setter
+#     def show_email(self,value):
+#         if type(value) == bool:
+#             self.__show_email = value
+#         else:
+#             print (f"(value) must be True or False")
+
+#     @property
+#     def show_age (self):
+#         return self.__show_age
+    
+#     @show_age.setter
+#     def show_age(self,value):
+#         if type(value) == bool:
+#             self.__show_age = value
+#         else:
+#             print (f"(value) must be True or False")
+
+#     def privacy_summary (self):
+#         print (f"Show Age: {self.show_age} | Show Email: {self.show_email} | Is Public: {self.is_public} ")
+
+# user1 = UserProfile("yaakov")
+# user1.is_public = True
+# user1.show_age = 123
+# user1.privacy_summary()
+
+
+# question 10
+class UserAccount:
+    def __init__(self,username,email,password,age):
+        self.__username = username
+        self.__email = email
+        self.__password = password
+        self.__age = age
+        self._login_count = 0
 
     @property
-    def is_public (self):
-        return self.__is_public
-    
-    @is_public.setter
-    def is_public(self,value):
-        if type(value) == bool:
-            self.__is_public = value
+    def username (self):
+        return self.__username
+    @username.setter
+    def username(self,new):
+        if len(new) >=3:
+            self.__username = new
         else:
-            print (f"(value) must be True or False")
+            print("invalid new username")
 
     @property
-    def show_email (self):
-        return self.__show_email
-    
-    @show_email.setter
-    def show_email(self,value):
-        if type(value) == bool:
-            self.__show_email = value
+    def email (self):
+        return self.__email
+    @email.setter
+    def email (self,new):
+        if '@' in new:
+            self.__email = new
         else:
-            print (f"(value) must be True or False")
+            print ("invalid email")
 
     @property
-    def show_age (self):
-        return self.__show_age
-    
-    @show_age.setter
-    def show_age(self,value):
-        if type(value) == bool:
-            self.__show_age = value
+    def age (self):
+        return self.__age
+    @age.setter
+    def age (self,new):
+        if 13 <= new <= 120:
+            self.__age = new
         else:
-            print (f"(value) must be True or False")
+            print ("invalid age")
 
-    def privacy_summary (self):
-        print (f"Show Age: {self.show_age} | Show Email: {self.show_email} | Is Public: {self.is_public} ")
+    def check_password (self,attempt):
+        if attempt == self.__password:
+            return True
+        else:
+            print ("passwords to not match")
+    
+    def change_password(self,old, new):
+        if old == self.__password:
+            self.__password = new
+        else:
+            print ("invalid old password")
 
-user1 = UserProfile("yaakov")
-user1.is_public = True
-user1.show_age = 123
-user1.privacy_summary()
+    def login(self, password):
+        if password == self.__password:
+            self._login_count += 1
+        else:
+            print("Login Failed")
+
+    def account_summary(self):
+        print ("Username:", self.username)
+        print ("Email:", self.email)
+        print ("Age:", self.age)
+        print("Login Count", self._login_count)
+
+user1 = UserAccount ("yaakov", "1@3", 12345, 26)
+user1.login("12345678")
+user1.login("12348")
+user1.login(12345)
+user1.age = 34
+user1.email = "234@123"
+user1.account_summary()
+
+
+    
 
 
