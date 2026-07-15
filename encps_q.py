@@ -28,23 +28,51 @@
 # print (user1.username, user1.email)
 # print (user2.username, user2.email)
 
-# question 3
+# # question 3
+# class UserProfile:
+#     def __init__(self, username):
+#         self.__username = username
+
+#     @property
+#     def username(self):
+#         return self.__username
+    
+#     @username.setter
+#     def username(self,new_username):
+#         if len(new_username) >= 3:
+#             self.__username = new_username
+#         else:
+#             print (f"Username too short")
+
+# p = UserProfile("alice")
+# p.username = "ab"
+# p.username = "alexis"
+# print (p.username)
+
 class UserProfile:
-    def __init__(self, username):
+    def __init__(self,username):
         self.__username = username
+        self.__followers = 0
 
     @property
-    def username(self):
-        return self.__username
+    def followers (self):
+        return self.__followers
     
-    @username.setter
-    def username(self,new_username):
-        if len(new_username) >= 3:
-            self.__username = new_username
+    def add_follow (self,):
+        self.__followers += 1
+    
+    def unfollow (self):
+        if self.__followers >=1:
+            self.__followers -= 1
         else:
-            print (f"Username too short")
+            print ("no followers to unfollow (: ")
+        
+profile1 = UserProfile("yaakov")
+profile1.add_follow()
+profile1.add_follow()
+profile1.add_follow()
 
-p = UserProfile("alice")
-p.username = "ab"
-p.username = "alexis"
-print (p.username)
+profile1.unfollow()
+print (profile1.followers)
+
+    
