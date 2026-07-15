@@ -95,6 +95,3 @@ class VerifiedUser (UserProfile):
         print(f"{self.username} {self.badge}: {self.bio}")
 vu = VerifiedUser("player", "quarterback", "&&&")
 vu.full_description()
-    
-
-    
