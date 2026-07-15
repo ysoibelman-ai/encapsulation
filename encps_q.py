@@ -143,33 +143,84 @@
 
 
 # question 8 
-class Post:
-    def __init__(self, author,content):
-        self.author = author
-        self.content = content
-        self.__likes = 0
-        self.__liked_by = []
-    @property
-    def likes(self):
-        return self.__likes
+# class Post:
+#     def __init__(self, author,content):
+#         self.author = author
+#         self.content = content
+#         self.__likes = 0
+#         self.__liked_by = []
+#     @property
+#     def likes(self):
+#         return self.__likes
     
-    def like (self,username):
-        if username not in self.__liked_by:
-            self.__liked_by.append(username)
-            self.__likes +=1
+#     def like (self,username):
+#         if username not in self.__liked_by:
+#             self.__liked_by.append(username)
+#             self.__likes +=1
 
-    def unlike (self,username):
-        if username  in self.__liked_by:
-            self.__liked_by.remove(username)
-            self.__likes -= 1
+#     def unlike (self,username):
+#         if username  in self.__liked_by:
+#             self.__liked_by.remove(username)
+#             self.__likes -= 1
 
-    def status (self):
-        print (f"Post by {self.author}: {self.__likes} likes")
-post1 = Post("yaakov","Hello World")
+#     def status (self):
+#         print (f"Post by {self.author}: {self.__likes} likes")
+# post1 = Post("yaakov","Hello World")
 
-post1.like("ephraim")
-post1.like("shmuel")
-post1.like("Chaim")
-post1.unlike("ephraim")
-post1.like("shmuel")
-post1.status()
+# post1.like("ephraim")
+# post1.like("shmuel")
+# post1.like("Chaim")
+# post1.unlike("ephraim")
+# post1.like("shmuel")
+# post1.status()
+
+# question 9
+class UserProfile:
+    def __init__(self, username):
+        self.username = username
+        self.__is_public = True
+        self.__show_email = False
+        self.__show_age = False
+
+    @property
+    def is_public (self):
+        return self.__is_public
+    
+    @is_public.setter
+    def is_public(self,value):
+        if type(value) == bool:
+            self.__is_public = value
+        else:
+            print (f"(value) must be True or False")
+
+    @property
+    def show_email (self):
+        return self.__show_email
+    
+    @show_email.setter
+    def show_email(self,value):
+        if type(value) == bool:
+            self.__show_email = value
+        else:
+            print (f"(value) must be True or False")
+
+    @property
+    def show_age (self):
+        return self.__show_age
+    
+    @show_age.setter
+    def show_age(self,value):
+        if type(value) == bool:
+            self.__show_age = value
+        else:
+            print (f"(value) must be True or False")
+
+    def privacy_summary (self):
+        print (f"Show Age: {self.show_age} | Show Email: {self.show_email} | Is Public: {self.is_public} ")
+
+user1 = UserProfile("yaakov")
+user1.is_public = True
+user1.show_age = 123
+user1.privacy_summary()
+
+
