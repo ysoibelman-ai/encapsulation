@@ -96,24 +96,49 @@
 # vu = VerifiedUser("player", "quarterback", "&&&")
 # vu.full_description()
 
-# question 6
-class UserProfile:
-    def __init__(self, username,age):
-        self.username = username
-        self.__age = age
+# # question 6
+# class UserProfile:
+#     def __init__(self, username,age):
+#         self.username = username
+#         self.__age = age
     
-    @property
-    def age (self):
-        return self.__age
-    @age.setter
-    def age (self, new_age):
-        if 13<=new_age<=120:
-            self.__age = new_age
-        else:
-            print ("invalid age")
+#     @property
+#     def age (self):
+#         return self.__age
+#     @age.setter
+#     def age (self, new_age):
+#         if 13<=new_age<=120:
+#             self.__age = new_age
+#         else:
+#             print ("invalid age")
 
-user1 = UserProfile("yaakov", 26)
-user1.age = 10
-user1.age = 200
-user1.age = 25
-print (user1.age)
+# user1 = UserProfile("yaakov", 26)
+# user1.age = 10
+# user1.age = 200
+# user1.age = 25
+# print (user1.age)
+
+# question 7
+class UserAccount:
+    def __init__(self, username, password):
+        self.username = username
+        self.__password = password
+    
+    def check_password (self,attempt):
+        if attempt == self.__password:
+            return True
+        else:
+            return False
+    
+    def change_password(self,old,new):
+        if old == self.__password:
+            self.__password = new
+        else:
+            print ("Incorrect old Password")
+user1 = UserAccount("yaakov", 123456)
+print (user1.check_password(1233456))
+user1.change_password(123456,654321)
+print (user1.check_password(654321))
+
+
+
