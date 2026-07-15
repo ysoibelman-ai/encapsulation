@@ -76,22 +76,44 @@
 # profile1.unfollow()
 # print (profile1.followers)
 
-# question 5
-class UserProfile:
-    def __init__(self, username,bio):
-        self.username = username
-        self._bio = bio
+# # question 5
+# class UserProfile:
+#     def __init__(self, username,bio):
+#         self.username = username
+#         self._bio = bio
 
-    @property
-    def bio (self):
-        return self._bio
+#     @property
+#     def bio (self):
+#         return self._bio
     
-class VerifiedUser (UserProfile):
-    def __init__(self, username, bio,badge):
-        super().__init__(username, bio)
-        self.badge = badge
+# class VerifiedUser (UserProfile):
+#     def __init__(self, username, bio,badge):
+#         super().__init__(username, bio)
+#         self.badge = badge
 
-    def full_description(self):
-        print(f"{self.username} {self.badge}: {self.bio}")
-vu = VerifiedUser("player", "quarterback", "&&&")
-vu.full_description()
+#     def full_description(self):
+#         print(f"{self.username} {self.badge}: {self.bio}")
+# vu = VerifiedUser("player", "quarterback", "&&&")
+# vu.full_description()
+
+# question 6
+class UserProfile:
+    def __init__(self, username,age):
+        self.username = username
+        self.__age = age
+    
+    @property
+    def age (self):
+        return self.__age
+    @age.setter
+    def age (self, new_age):
+        if 13<=new_age<=120:
+            self.__age = new_age
+        else:
+            print ("invalid age")
+
+user1 = UserProfile("yaakov", 26)
+user1.age = 10
+user1.age = 200
+user1.age = 25
+print (user1.age)
