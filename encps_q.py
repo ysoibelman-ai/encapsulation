@@ -118,27 +118,58 @@
 # user1.age = 25
 # print (user1.age)
 
-# question 7
-class UserAccount:
-    def __init__(self, username, password):
-        self.username = username
-        self.__password = password
+# # question 7
+# class UserAccount:
+#     def __init__(self, username, password):
+#         self.username = username
+#         self.__password = password
     
-    def check_password (self,attempt):
-        if attempt == self.__password:
-            return True
-        else:
-            return False
+#     def check_password (self,attempt):
+#         if attempt == self.__password:
+#             return True
+#         else:
+#             return False
     
-    def change_password(self,old,new):
-        if old == self.__password:
-            self.__password = new
-        else:
-            print ("Incorrect old Password")
-user1 = UserAccount("yaakov", 123456)
-print (user1.check_password(1233456))
-user1.change_password(123456,654321)
-print (user1.check_password(654321))
+#     def change_password(self,old,new):
+#         if old == self.__password:
+#             self.__password = new
+#         else:
+#             print ("Incorrect old Password")
+
+# user1 = UserAccount("yaakov", 123456)
+# print (user1.check_password(1233456))
+# user1.change_password(123456,654321)
+# print (user1.check_password(654321))
 
 
+# question 8 
+class Post:
+    def __init__(self, author,content):
+        self.author = author
+        self.content = content
+        self.__likes = 0
+        self.__liked_by = []
+    @property
+    def likes(self):
+        return self.__likes
+    
+    def like (self,username):
+        if username not in self.__liked_by:
+            self.__liked_by.append(username)
+            self.__likes +=1
 
+    def unlike (self,username):
+        if username  in self.__liked_by:
+            self.__liked_by.remove(username)
+            self.__likes -= 1
+
+    def status (self):
+        print (f"Post by {self.author}: {self.__likes} likes")
+post1 = Post("yaakov","Hello World")
+
+post1.like("ephraim")
+post1.like("shmuel")
+post1.like("Chaim")
+post1.unlike("ephraim")
+post1.like("shmuel")
+post1.status()
