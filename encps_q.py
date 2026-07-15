@@ -49,30 +49,52 @@
 # p.username = "alexis"
 # print (p.username)
 
+# # question 4
+# class UserProfile:
+#     def __init__(self,username):
+#         self.__username = username
+#         self.__followers = 0
+
+#     @property
+#     def followers (self):
+#         return self.__followers
+    
+#     def add_follow (self,):
+#         self.__followers += 1
+    
+#     def unfollow (self):
+#         if self.__followers >=1:
+#             self.__followers -= 1
+#         else:
+#             print ("no followers to unfollow (: ")
+        
+# profile1 = UserProfile("yaakov")
+# profile1.add_follow()
+# profile1.add_follow()
+# profile1.add_follow()
+
+# profile1.unfollow()
+# print (profile1.followers)
+
+# question 5
 class UserProfile:
-    def __init__(self,username):
-        self.__username = username
-        self.__followers = 0
+    def __init__(self, username,bio):
+        self.username = username
+        self._bio = bio
 
     @property
-    def followers (self):
-        return self.__followers
+    def bio (self):
+        return self._bio
     
-    def add_follow (self,):
-        self.__followers += 1
-    
-    def unfollow (self):
-        if self.__followers >=1:
-            self.__followers -= 1
-        else:
-            print ("no followers to unfollow (: ")
-        
-profile1 = UserProfile("yaakov")
-profile1.add_follow()
-profile1.add_follow()
-profile1.add_follow()
+class VerifiedUser (UserProfile):
+    def __init__(self, username, bio,badge):
+        super().__init__(username, bio)
+        self.badge = badge
 
-profile1.unfollow()
-print (profile1.followers)
+    def full_description(self):
+        print(f"{self.username} {self.badge}: {self.bio}")
+vu = VerifiedUser("player", "quarterback", "&&&")
+vu.full_description()
+    
 
     
